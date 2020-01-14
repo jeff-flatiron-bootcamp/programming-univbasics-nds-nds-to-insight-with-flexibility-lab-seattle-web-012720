@@ -98,7 +98,7 @@ def gross_per_studio(collection)
       puts "\t Subitem title worldwide_gross: #{worldwide_gross}"
       temp_hash = {:title => title, :studio => studio, :worldwide_gross =>worldwide_gross}
       puts "\t Prepped hash: #{temp_hash}"
-      process_collection.push(temp_hash)
+      #process_collection.push(temp_hash)
       director_index+=1
     end
     collection = process_collection
