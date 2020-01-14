@@ -82,7 +82,7 @@ def gross_per_studio(collection)
   movie_index = 0
   
   #convert modifed input from Db to acceptable AoH design
-  if(collection[0][:director_name])
+  if(collection[movie_index][:director_name])
     
     director_index = 0
     while(collection[director_index][:director_name]) do
