@@ -87,9 +87,10 @@ def gross_per_studio(collection)
     director_index = 0
     while(collection[director_index][:director_name]) do
 
-      title = collection[director_index][:title][:title]
-      studio = collection[director_index][:title][:studio]
-      worldwide_gross = collection[director_index][:title][:worldwide_gross]
+      puts "Converting an item: #{collection[director_index]}"
+      #title = collection[director_index][:title][:title]
+      #studio = collection[director_index][:title][:studio]
+      #worldwide_gross = collection[director_index][:title][:worldwide_gross]
       
       puts "Converting an item: #{collection[director_index]}"
       puts " Subitem title Hash: #{collection[director_index][:title]}"
