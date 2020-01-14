@@ -92,12 +92,12 @@ def gross_per_studio(collection)
       worldwide_gross = collection[director_index][:title][:worldwide_gross]
       
       puts "Converting an item: #{collection[director_index]}"
-      puts "\t Subitem title Hash: #{collection[director_index][:title]}"
-      puts "\t Subitem title string: #{title}"
-      puts "\t Subitem title studio: #{studio}"
-      puts "\t Subitem title worldwide_gross: #{worldwide_gross}"
+      puts " Subitem title Hash: #{collection[director_index][:title]}"
+      puts " Subitem title string: #{title}"
+      puts " Subitem title studio: #{studio}"
+      puts " Subitem title worldwide_gross: #{worldwide_gross}"
       temp_hash = {:title => title, :studio => studio, :worldwide_gross =>worldwide_gross}
-      puts "\t Prepped hash: #{temp_hash}"
+      puts " Prepped hash: #{temp_hash}"
       #process_collection.push(temp_hash)
       director_index+=1
     end
