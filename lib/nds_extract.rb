@@ -1,5 +1,6 @@
 # Provided, don't edit
 require 'directors_database'
+require 'pp'
 
 # A method we're giving you. This "flattens"  Arrays of Arrays so: [[1,2],
 # [3,4,5], [6]] => [1,2,3,4,5,6].
@@ -48,6 +49,14 @@ def movies_with_director_key(name, movies_collection)
   # Array of Hashes where each Hash represents a movie; however, they should all have a
   # :director_name key. This addition can be done by using the provided
   # movie_with_director_name method
+  
+  row_index = 0
+  collection_Directors_Movies = []
+  while (movies_collection[row_index]) do
+    collection_Directors_Movies << movie_with_director_name(name, movies_collection[row_index])
+    row_index+=1
+  end
+  collection_Directors_Movies
 end
 
 
@@ -63,6 +72,36 @@ def gross_per_studio(collection)
   #
   # Hash whose keys are the studio names and whose values are the sum
   # total of all the worldwide_gross numbers for every movie in the input Hash
+  
+  process_collection = []
+  return_hash = {}
+  movie_index = 0
+  
+  #convert modifed input from Db to acceptable AoH design
+  if(collection[movie_index][:director_name])
+    director_index = 0
+    while(collection[director_index]) do
+      title = collection[director_index][:title][:title]
+      studio = collection[director_index][:title][:studio]
+      worldwide_gross = collection[director_index][:title][:worldwide_gross]
+      temp_hash = {:title => title, :studio => studio, :worldwide_gross =>worldwide_gross}
+      process_collection.push(temp_hash)
+      director_index+=1
+    end
+    collection = process_collection
+  end
+    
+  movie_index = 0
+  while(collection[movie_index]) do
+    if(return_hash[collection[movie_index][:studio]])
+      return_hash[collection[movie_index][:studio]] = return_hash[collection[movie_index][:studio]] + collection[movie_index][:worldwide_gross]
+    else
+      return_hash[collection[movie_index][:studio]] = collection[movie_index][:worldwide_gross]
+    end
+  
+    movie_index+=1
+  end
+  return_hash
 end
 
 def movies_with_directors_set(source)
@@ -76,6 +115,18 @@ def movies_with_directors_set(source)
   #
   # Array of Arrays containing all of a director's movies. Each movie will need
   # to have a :director_name key added to it.
+  
+  row_index = 0
+  collection_Movies_With_Directors = []
+  while (source[row_index]) do
+    movie_index = 0
+    while (source[row_index][:movies][movie_index]) do
+      collection_Movies_With_Directors << [{director_name: source[row_index][:name], title: source[row_index][:movies][movie_index]}]
+      movie_index+=1
+    end
+    row_index+=1
+  end
+  collection_Movies_With_Directors
 end
 
 # ----------------    End of Your Code Region --------------------
